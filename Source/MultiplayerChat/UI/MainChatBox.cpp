@@ -58,15 +58,23 @@ void UMainChatBox::AddChat(const FText& ToAdd)
 
 FReply UMainChatBox::NativeOnPreviewKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
 {
+	UE_LOG(LogTemp, Warning, TEXT("NativeOnPreviewKeyDown"));
 	if (!InKeyEvent.IsShiftDown()&&InKeyEvent.GetKey() == FKey("Enter"))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("NativeOnPreviewKeyDown, enter"));
 		//AddChat(InputBar->GetText());
 		FText Text = InputBar->GetText();
 		auto Controller = UGameplayStatics::GetPlayerController(this, 0);
-		if (!Controller) { return FReply::Handled();
+		if (!Controller) { 
+
+			UE_LOG(LogTemp, Warning, TEXT("NativeOnPreviewKeyDown, no controller"));
+			return FReply::Handled();
 		}
 		AMyCharacter* MyChar = Cast<AMyCharacter>(Controller->GetPawn());
-		if (!MyChar) { return FReply::Handled();
+		if (!MyChar) {
+
+			UE_LOG(LogTemp, Warning, TEXT("NativeOnPreviewKeyDown, no char"));
+			return FReply::Handled();
 		}
 		MyChar->OnSendText(Text);
 		//OnSendingTextDelegate.ExecuteIfBound(Text);

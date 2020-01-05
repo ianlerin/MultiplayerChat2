@@ -22,6 +22,7 @@ void AMyCharacter::BeginPlay()
 		//MyChatBox->OnSendingTextDelegate.BindUFunction(this, "OnSendText");
 		MyChatBox->AddToViewport();
 	}
+
 	
 }
 
@@ -41,10 +42,14 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void AMyCharacter::OnSendText(const FText& TextSent)
 {
-	FString String=TextSent.ToString();
+	FString String = TextSent.ToString();
 
 	UE_LOG(LogTemp, Warning, TEXT("OnSendText"));
-	S_OnSendText(TextSent);
+	
+
+		S_OnSendText(TextSent);
+	
+	
 	/*
 	if(!GetWorld()) { return; }
 	auto GameState = GetWorld()->GetGameState();

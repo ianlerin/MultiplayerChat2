@@ -14,10 +14,9 @@ bool AMyGameStateBase::S_SendMessageToAll_Validate(const FText& ToSend)
 
 void AMyGameStateBase::Multi_SendMessageToAll_Implementation(const FText&String)
 {
-	if (!HasAuthority())
-	{
+	
 		OnSendingToAllMessageDelegate.Broadcast(String);
-	}
+	
 	
 }
 
